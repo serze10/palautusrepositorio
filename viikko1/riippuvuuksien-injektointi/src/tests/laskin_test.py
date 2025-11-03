@@ -21,3 +21,14 @@ class TestLaskin(unittest.TestCase):
         laskin.suorita()
 
         self.assertEqual(io.outputs[0], "Summa: 4")
+
+    def test_kaksi_summaa_perakkain(self):
+        io = StubIO([
+            "1", "2", "-9999",   # Ensimmäinen laskutoimitus: 1 + 2 = 3
+            "5", "7", "-9999"    # Toinen laskutoimitus: 5 + 7 = 12
+        ])
+        laskin = Laskin(io)
+        laskin.suorita()
+
+        self.assertEqual(io.outputs[0], "Summa: 3")
+        self.assertEqual(io.outputs[1], "Summa: 12")
