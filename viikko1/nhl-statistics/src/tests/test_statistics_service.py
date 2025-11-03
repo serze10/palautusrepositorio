@@ -1,6 +1,8 @@
 import unittest
 from statistics_service import StatisticsService
 from player import Player
+from statistics_service import SortBy
+
 
 class PlayerReaderStub:
     def get_players(self):
@@ -46,3 +48,22 @@ class TestStatisticsService(unittest.TestCase):
     def test_top_palauttaa_kaikki_jos_pyydetaan_liikaa(self):
         top_players = self.stats.top(10)
         self.assertEqual(len(top_players), 5)  # stubissa vain 5 pelaajaa
+
+    def test_top_järjestää_pisteiden_perusteella(self):
+        top_players = self.stats.top(2, SortBy.POINTS)
+        self.assertEqual(top_players[0].name, "Gretzky")  # 124
+        self.assertEqual(top_players[1].name, "Lemieux")  # 99
+
+    def test_top_järjestää_maalien_perusteella(self):
+        top_players = self.stats.top(2, SortBy.GOALS)
+        self.assertEqual(top_players[0].name, "Lemieux")  # 45
+        self.assertEqual(top_players[1].name, "Yzerman")  # 42
+
+    def test_top_järjestää_syöttöjen_perusteella(self):
+        top_players = self.stats.top(2, SortBy.ASSISTS)
+        self.assertEqual(top_players[0].name, "Gretzky")  # 89
+        self.assertEqual(top_players[1].name, "Yzerman")  # 56
+
+    def test_top_toimii_ilman_sortby_parametria(self):
+        top_players = self.stats.top(1)
+        self.assertEqual(top_players[0].name, "Gretzky")  # oletus: POINTS
