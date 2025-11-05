@@ -8,8 +8,8 @@ authors = [
 readme = "README.md"
 requires-python = "^3.12"
 dependencies = [
-    "flask (>=3.1.2,<4.0.0)",
-    "sqlalchemy (>=2.0.44,<3.0.0)"
+    "sqlalchemy (==1.4.54)",
+    "fastapi (>=0.121.0,<0.122.0)"
 ]
 
 
