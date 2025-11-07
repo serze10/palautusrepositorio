@@ -26,4 +26,4 @@ jobs:
           pip install pylint
 
       - name: Run Pylint
-        run: pylint src
+        run: pylint viikko2/nhl-reader/src
