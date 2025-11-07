@@ -2,7 +2,7 @@ from rich.console import Console
 from rich.table import Table
 import requests
 from player import Player
-# pylint test4
+# pylint test5
 def fetch_players(season):
     url = f"https://studies.cs.helsinki.fi/nhlstats/{season}/players"
     response = requests.get(url, timeout=10).json()
