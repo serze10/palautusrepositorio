@@ -20,11 +20,17 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install pylint
+      - name: Install Poetry
+        run: pip install poetry
 
-      - name: [Run Pylint](guide://action?prefill=Tell%20me%20more%20about%3A%20Run%20Pylint)
-        run: pylint src
+      - name: Install dependencies with Poetry
+        run: |
+          cd viikko2/nhl-reader
+          poetry install
+
+      - name: Run Pylint
+        run: |
+          cd viikko2/nhl-reader
+          poetry run pylint src
+
 
