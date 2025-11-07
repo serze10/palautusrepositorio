@@ -24,13 +24,10 @@ jobs:
         run: pip install poetry
 
       - name: Install dependencies with Poetry
-        run: |
-          cd viikko2/nhl-reader
-          poetry install
+        working-directory: viikko2/nhl-reader
+        run: poetry install
 
       - name: Run Pylint
-        run: |
-          cd viikko2/nhl-reader
-          poetry run pylint src
-
+        working-directory: viikko2/nhl-reader
+        run: poetry run pylint src
 
