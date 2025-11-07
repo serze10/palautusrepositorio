@@ -12,14 +12,14 @@ def main():
 
     players = [Player(p) for p in response]
 
-    
+
     def by_points(player: Player):
         return player.points()
-    
+
     selected = [p for p in players if p.nationality == nationality]
-    
+
     sorted_players = sorted(selected, key=by_points, reverse=True)
-    
+
     table = Table(title=f"Players from {nationality} in season {season}")
 
     table.add_column("Name", style="cyan", no_wrap=True)
@@ -39,6 +39,7 @@ def main():
 
     console = Console()
     console.print(table)
-        
+
+
 if __name__ == "__main__":
     main()
