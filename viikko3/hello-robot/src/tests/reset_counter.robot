@@ -1,3 +1,7 @@
+*** Settings ***
+Library  ../CounterLibrary.py
+
+*** Test Cases ***
 Reset Counter After One Increment
     Counter Value Should Be  0
     Increase Counter
