@@ -83,6 +83,7 @@ def handle_register():
         user_service.create_user(username, password, password_confirmation)
         return redirect_to_welcome()
     except Exception as error:
+        print("Validation error:", str(error))  # DEBUG
         flash(str(error))
         return redirect_to_register()
 

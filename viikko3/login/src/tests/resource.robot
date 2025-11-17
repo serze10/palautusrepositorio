@@ -37,6 +37,11 @@ Main Page Should Be Open
 Register Page Should Be Open
     Title Should Be    Register
 
+Reset Application Create User And Go To Register Page
+    Reset Application
+    Create User    kalle    kalle123
+    Go To Register Page
+
 Go To Login Page
     Go To  ${LOGIN_URL}
 
