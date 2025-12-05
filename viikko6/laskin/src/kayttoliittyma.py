@@ -18,6 +18,7 @@ class Kayttoliittyma:
             Komento.EROTUS: Erotus(sovelluslogiikka, self._lue_syote),
             Komento.NOLLAUS: Nollaus(sovelluslogiikka, self._lue_syote)
         }
+        self._edellinen_komento = None
         
     def kaynnista(self):
         self._arvo_var = StringVar()
@@ -63,10 +64,16 @@ class Kayttoliittyma:
         return self._syote_kentta.get()
 
     def _suorita_komento(self, komento):
-        # haetaan dict:istä oikea komento
-        komento_olio = self._komennot[komento]
-        komento_olio.suorita()
-        self._kumoa_painike["state"] = constants.NORMAL
+        if komento == Komento.KUMOA:
+            if self._edellinen_komento:
+                self._edellinen_komento.kumoa()
+                self._edellinen_komento = None
+        else:
+            komento_olio = self._komennot[komento]
+            komento_olio.suorita()
+            self._edellinen_komento = komento_olio
+
+        self._kumoa_painike["state"] = constants.NORMAL if self._edellinen_komento else constants.DISABLED
 
         if self._sovelluslogiikka.arvo() == 0:
             self._nollaus_painike["state"] = constants.DISABLED
